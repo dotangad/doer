@@ -1,10 +1,20 @@
 // app/providers.tsx
 "use client";
 
-import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { SessionProvider } from "next-auth/react";
 
-const theme = extendBaseTheme({});
+const theme = extendTheme({});
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <ChakraBaseProvider theme={theme}>{children}</ChakraBaseProvider>;
+  return (
+    <>
+      <CacheProvider>
+        <SessionProvider>
+          <ChakraProvider theme={theme}>{children}</ChakraProvider>
+        </SessionProvider>
+      </CacheProvider>
+    </>
+  );
 }
