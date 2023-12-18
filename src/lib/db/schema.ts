@@ -1,8 +1,6 @@
 import { sql } from "drizzle-orm";
 import {
   pgTable,
-  serial,
-  date,
   text,
   timestamp,
   integer,
